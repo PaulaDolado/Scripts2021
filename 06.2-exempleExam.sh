@@ -26,10 +26,10 @@ then
 if [ $nota -ge 5 ]
 then
     echo "examen aprovat"
-elif [ $nota -ge 6 -a $nota -lt 8 ]
+elif [ $nota -le 7 ] #com ja estem condició <5 no cal repetir
 then
     echo "examen aprovat amb notable"
-elif [ $nota -gt 8 -a $nota -lt 10 ]
+elif [ $nota -lt 9 ]
     echo "examen aprovat amb excelent"
 else
     echo "examen suspés"
