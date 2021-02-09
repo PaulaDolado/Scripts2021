@@ -3,29 +3,31 @@
 #Febrer 2021
 #Descripció: Dir si està aprovat o no
 #-------------------------------------
-#Validem la nota
+ERR_ARGS=1
+ERR_VAL=2 #canvi num pq tipus diferent, sortida tmb
 
+#error: validem arguments
 if [ $# -ne 2 ]
 then
     echo "Error: num arguments incorrecte"
     echo "Usage: $0 nota"
-    exit 1
+    exit $ERR_ARGS
 fi
 
-#Validem la nota: 0 a 10
-if [ $1 -lt 5 ]
+#error: validem valors nota
+nota=$1
+if [ $nota -ge 0 -a $nota -le 10 ]
 then
-    echo "examen suspes"
-    exit 1
-fi 
-
-if [ $1 -ge 5 ]
+    echo "error nota no vàlida"
+    echo "nota pren valor [0,10]"
+    exit $ERR_VAL 
+ fi 
+ 
+if [ $nota -lt 5 ]
 then
+    echo "examen suspés"
+else
     echo "examen aprovat"
-    exit 1
-fi 
-
+fi
 
 exit 0
-
-echo $1
