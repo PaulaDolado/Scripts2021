@@ -23,16 +23,17 @@ then
     exit $ERR_VAL 
  fi 
  
-if [ $nota -ge 5 ]
+if [ $nota -lt 5 ]
 then
-    echo "examen aprovat"
+    echo "examen suspés"
 elif [ $nota -lt 7 ] #com ja estem condició <5 no cal repetir
 then
-    echo "examen aprovat amb notable"
+    echo "examen aprovat"
 elif [ $nota -lt 9 ]
-    echo "examen aprovat amb excelent"
+then
+    echo "examen aprovat amb notable"
 else
-    echo "examen suspés"
+    echo "examen aprovat amb excel·lent"
 fi
 
 exit 0
