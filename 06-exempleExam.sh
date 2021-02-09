@@ -1,7 +1,7 @@
 #!/bin/bash
 #@paula ASIX M01-ISO
 #Febrer 2021
-#$ bash 05-validarexamen.sh arg1 arg2
+#Descripció: Dir si està aprovat o no
 #-------------------------------------
 #Validem la nota
 
