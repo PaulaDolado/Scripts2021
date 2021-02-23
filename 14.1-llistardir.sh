@@ -31,6 +31,3 @@ do
   num=$((num+1))
 done
 exit 0
-
-
-
