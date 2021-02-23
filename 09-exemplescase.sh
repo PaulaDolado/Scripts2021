@@ -13,7 +13,7 @@ case $1 in
     echo "és una altra cosa";;
 esac
 exit 0
-
+#------------------------------------------------------
 # 2) Dir si és vocal, consonant o una altra cosa
 case $1 in
   [aeiou])
@@ -24,7 +24,7 @@ case $1 in
     echo "és una altra cosa";;	  
 esac	
 exit 0
-
+#-----------------------------------------------------
 # 1) exemple noms
 case $1 in 
   "pere"|"pau"|"joan")
