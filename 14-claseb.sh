@@ -14,11 +14,14 @@ then
 fi
 
 #validem argument sigui un directori
-if [ ! -d  $1]
-then
-  echo"Aquest argument no es un directori"
-  exit $ERR_DIR
-fi
+for mydir in $*
+do
+  if [ ! -d  $1]
+  then
+    echo"Aquest argument no es un directori"
+    echo"Usage: $0 dir"
+    ok= $ERR_DIR
+    fi
 
 #llistar el directori i numerem
 dir=$1
@@ -26,7 +29,15 @@ num=1
 llista_elements=$(ls $dir)
 for fit in $llista_elements
 do
-  echo"$num: $fit"
-  ((num++))
-done
-exit 0
+  if [ -h $mydir/$fit ]
+  then
+    echo -e "\t $fit es un link"
+  elif [ -f $mydir/$fit ]
+  then
+    echo -e "\t $fir es un regular file"
+  elif [ -d $mydir/$fit ]
+  then
+    echo -e "\t $fit es un director"
+  else
+    echo -e "\t $fit es un altre "
+ exit 0
