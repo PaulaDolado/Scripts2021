@@ -1,6 +1,6 @@
-#! /bin/bash 
-# @edt ASIX-M01 Curs 2019-2020 
-# gener 2018 
+#!/bin/bash
+#@paula ASIX M01-ISO
+#Febrer 2021 
 # Descripcio: dir els dies que té un més 
 # Synopsis: prog mes 
 # --------------------------------- 
