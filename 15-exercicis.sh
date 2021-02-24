@@ -5,7 +5,34 @@
 # Exercicis classe 23-02-2021
 # -------------------------------------
 
+#copyfile file a dir destí
+  #validem els arguments
+ERR_ARG=1
+ERR_NOEXIST=2
+if [ $# -ne 2 ] #han de ser 2 arg degut a que el file + dir 
+then
+    echo "Error: nºarguments incorrecte"
+    echo "Usage: $0 arg insuficient"
+    exit $ERR_ARG
+fi
 
+  #validem que es un fitxer + aquest existeix
+file=$1
+if [ ! -e $file ]
+then
+  echo"Error: $file no existeix"
+  exit $ERR_NOEXIST
+fi
+  #validem que es un directori
+dir=$2
+if [! -d $dir]
+then
+  echo"Error: $dir no es un directori"
+  exit $NO_EXIST
+
+cp -r $file /desti
+
+#-----------------------------------------------
 #mostrar linia a linia estand + retallar 50c
 
 llista_noms=$( cut -50c /etc/passwd )
@@ -17,7 +44,7 @@ do
 done
 exit
 
-
+#-----------------------------------------------
 #programa dir dies del mes
   #validem els arguments
 ERR_ARG=1
@@ -47,7 +74,7 @@ else #cas de no error -->dir dies mes
 esac
 exit 0
 
-
+#-----------------------------------------------
 #comptador del 0 a n
 num=$1
 inici=0
@@ -58,6 +85,8 @@ do
 done
 exit 0
 
+
+#-----------------------------------------------
 #mostrar arguments linia a linia numerant
 num=1
 for arg in $*
@@ -67,7 +96,7 @@ do
 done
 exit 0
 
-
+#-----------------------------------------------
 #mostrar la entrada estandard + numerant
 num=1
 while read -r line
