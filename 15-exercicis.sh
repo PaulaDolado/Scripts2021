@@ -75,5 +75,3 @@ do
   echo"$num: $line"
 done
 exit 0
-
-
