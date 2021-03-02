@@ -5,6 +5,63 @@
 # Exercicis classe 23-02-2021
 # -------------------------------------
 
+#mostrar stdin +  max linies
+num=1
+MAX=$1
+while read -r line
+do	
+  if [ "$num" -le $MAX ]; then
+    echo "$num: $line"
+  else
+    echo "$line"      	  
+  fi	  
+  num=$((num+1))
+done
+
+# --------------------------------------
+#mostrar nom user /etc/passwd -->stdout
+for user in $* 
+do	  
+  grep "^$user:" /etc/passwd &> /dev/null
+  if [ $? -eq 0 ];
+  then     
+    echo $user   
+  else
+    echo $user >> /dev/stderr
+   fi	  
+done
+
+# ---------------------------------------
+#linia linia stder --> 60car mostrar
+while read -r line
+do
+  num=$(echo "$line" | wc -c)   
+  if [ "$num" -gt 60 ];
+  then    
+    echo $line   
+  fi	  
+done
+
+# ----------------------------------------
+#dies festius o laborables
+laboral=0
+festiu=0
+for dia in $*
+do
+  case $dia in 
+    "dilluns"|"dimarts"|"dimecres"|"dijous"|"divendres")
+      laboral=$((laboral++));;
+    "dissabte"|"diumenge")
+      festiu=$((festiu++));;
+     *)
+       echo "Dia no vàlid"
+       echo "Error: $dia no existeix" >> /dev/stderr
+   esac
+done
+echo "labobles: $laboral"
+echo "festius : $festiu"
+
+# ----------------------------------------------------
 #copyfile file a dir destí
   #validem els arguments
 ERR_ARG=1
@@ -15,7 +72,6 @@ then
     echo "Usage: $0 arg insuficient"
     exit $ERR_ARG
 fi
-
   #validem que es un fitxer + aquest existeix
 file=$1
 if [ ! -e $file ]
