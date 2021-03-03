@@ -5,33 +5,56 @@
 # Exercicis classe 23-02-2021
 # -------------------------------------
 
-#mostrar stdin +  max linies
+#10mostrar stdin +  max linies
 num=1
 MAX=$1
 while read -r line
 do	
-  if [ "$num" -le $MAX ]; then
+  if [ "$num" -le $MAX ]; 
+  then
     echo "$num: $line"
   else
     echo "$line"      	  
   fi	  
   num=$((num+1))
 done
+#9--------------------------------------
+while read -r line
+do
+#xixa 1rcamp-->nom user
+grep "^$elem:" /etc/passwd &> /dev/null
+if [ $? -eq 0 ]
+then
+echo "$elem"
+else
+echo "No existeix: $elem" >> /dev/stderr
+fi
+done
+exit 0
 
-# --------------------------------------
+#8--------------------------------------
 #mostrar nom user /etc/passwd -->stdout
-for user in $* 
-do	  
+ERR_ARG=1
+#num arg
+if [ $# -eq 0 ]
+then
+  echo "Error: nºarguments incorrecte"
+  echo "Usage: $0 arg insuficient"
+exit $ERR_ARG
+fi
+#xixa
+for user in $*
+do
   grep "^$user:" /etc/passwd &> /dev/null
   if [ $? -eq 0 ];
-  then     
-    echo $user   
+  then
+    echo $user
   else
     echo $user >> /dev/stderr
-   fi	  
+  fi
 done
 
-# ---------------------------------------
+#7---------------------------------------
 #linia linia stder --> 60car mostrar
 while read -r line
 do
@@ -42,7 +65,7 @@ do
   fi	  
 done
 
-# ----------------------------------------
+#6----------------------------------------
 #dies festius o laborables
 laboral=0
 festiu=0
@@ -61,34 +84,7 @@ done
 echo "labobles: $laboral"
 echo "festius : $festiu"
 
-# ----------------------------------------------------
-#copyfile file a dir destí
-  #validem els arguments
-ERR_ARG=1
-ERR_NOEXIST=2
-if [ $# -ne 2 ] #han de ser 2 arg degut a que el file + dir 
-then
-    echo "Error: nºarguments incorrecte"
-    echo "Usage: $0 arg insuficient"
-    exit $ERR_ARG
-fi
-  #validem que es un fitxer + aquest existeix
-file=$1
-if [ ! -e $file ]
-then
-  echo"Error: $file no existeix"
-  exit $ERR_NOEXIST
-fi
-  #validem que es un directori
-dir=$2
-if [! -d $dir]
-then
-  echo"Error: $dir no es un directori"
-  exit $NO_EXIST
-
-cp -r $file /desti
-
-#-----------------------------------------------
+#5-----------------------------------------------
 #mostrar linia a linia estand + retallar 50c
 
 llista_noms=$( cut -50c /etc/passwd )
@@ -100,7 +96,7 @@ do
 done
 exit
 
-#-----------------------------------------------
+#4-----------------------------------------------
 #programa dir dies del mes
   #validem els arguments
 ERR_ARG=1
@@ -130,7 +126,7 @@ else #cas de no error -->dir dies mes
 esac
 exit 0
 
-#-----------------------------------------------
+#3-----------------------------------------------
 #comptador del 0 a n
 num=$1
 inici=0
@@ -141,8 +137,7 @@ do
 done
 exit 0
 
-
-#-----------------------------------------------
+#2-----------------------------------------------
 #mostrar arguments linia a linia numerant
 num=1
 for arg in $*
@@ -152,7 +147,7 @@ do
 done
 exit 0
 
-#-----------------------------------------------
+#1-----------------------------------------------
 #mostrar la entrada estandard + numerant
 num=1
 while read -r line
