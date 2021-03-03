@@ -1,3 +1,4 @@
+# ! /bin/bash
 # @paula ASIX M01
 # Curs 2020-2021
 # Febrer 2021
