@@ -19,16 +19,7 @@ function crearEscol(){
   done
 
 
-
-
-
-
-
-
 }
-
-
-
 #------------------------------------------------------
    #Descripció:
    #programa crear noms de ususari--> 5 users
