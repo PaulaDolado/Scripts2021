@@ -3,7 +3,61 @@
 # Març de 2021
 # exemple de funcions
 #------------------------------
+#---------------------------------------------------
+#22-fetHoleList login
+#
 
+function getHoleList(){
+  ERR_ARGV=1
+  
+  #validem argv 
+  if [$# -lt 1]; 
+  then
+    echo "Error: Numero de arg incorrecte"
+    echo "Usage: $ login"
+    return $ERR_ARGV
+  fi
+
+  login_list=$*
+  line=$(grep "^$login:" /etc/passwd |cut -d: -f6)
+  #validem si existeix + mostrem
+  for login in $login_list
+  do
+     grep "^$login:" /etc/passwd &> /dev/null
+
+    #$? --> estat 0 be 1error, x tant si esta bé busquem
+    if [$? -ne 0];
+    then
+        echo "Error: No s'ha pogut trobar el login o es incorrecte"
+        return 1  
+   else
+     grep "^$login:" /etc/passwd | cut -d: -f6
+     return 0     
+    fi
+   done
+
+}
+
+#---------------------------------------------------
+#21-getHome login --> rep login + stdout home --> 0
+#                                  no trobat  --> 1
+
+#NO CAL VALIDAR!! --> Exer.
+
+function getHome(){
+  
+  login=$1
+  line=$(grep "^$login:" /etc/passwd |cut -d: -f6)
+  
+  if [ -z "$line" ];
+   then
+     echo "Error: No s'ha pogut trobar el home o el login no es vàlid"
+     return 1
+   else
+     echo "home user: $line" 
+     return 0
+  fi
+}
 
 #-----------------------------------------------------
 #6) ShowUserIn < fileIn
